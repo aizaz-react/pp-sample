@@ -1,7 +1,7 @@
-import SignOutIcon from '@/assets/CustomIcons/SignOuticon';
 import { RoundedDialog } from '@/components/styled/core';
 import { Stack, Typography } from '@mui/material';
 import Button from '../Button';
+import SignOutIcon from '@/assets/CustomIcons/SignOutIcon';
 
 const LogoutModal = (props) => {
   const onClose = () => {
