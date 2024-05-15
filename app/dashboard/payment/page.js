@@ -19,14 +19,13 @@ import {
 } from '@mui/material';
 import moment from 'moment';
 import { useCallback, useState } from 'react';
-import NoCard from '../../assets/CustomIcons/NoCard';
-import PaymentModal from '../../components/core/modals/PaymentModal';
-
+import NoCard from '@/assets/CustomIcons/NoCard';
+import PaymentModal from '@/components/core/modals/PaymentModal';
 import {
   useGetCard,
   useGetStats,
   useGetTransactionHistory
-} from '../../hooks/payment';
+} from '@/hooks/payment';
 
 export default function Home() {
   const theme = useTheme();
