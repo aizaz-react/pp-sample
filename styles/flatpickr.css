@@ -1,0 +1,101 @@
+.flatpickr-input {
+  width: 100%;
+  background-color: transparent;
+  color: white;
+  outline: none;
+  outline: 1px solid #429cbd80;
+  border: unset;
+  border-radius: 4px;
+  padding: 0.7rem 0.9rem;
+}
+.flatpickr-input.active,
+.flatpickr-input.active:hover {
+  outline: 2px solid #429cbd;
+}
+.flatpickr-input:hover {
+  outline: 1px solid white;
+}
+
+.flatpickr-days,
+.flatpickr-day,
+.flatpickr-day.prevMonthDay,
+.flatpickr-day.flatpickr-disabled,
+.flatpickr-day.flatpickr-disabled:hover,
+span.flatpickr-day.nextMonthDay,
+.flatpickr-day.nextMonthDay.flatpickr-disabled:hover {
+  color: black;
+}
+
+.flatpickr-months .flatpickr-month,
+.flatpickr-current-month .flatpickr-monthDropdown-months,
+.flatpickr-weekdays,
+span.flatpickr-weekday {
+  background-color: #0e2833;
+  color: white;
+}
+
+.flatpickr-day.selected,
+.flatpickr-day.selected:focus,
+.flatpickr-day.selected:hover,
+.flatpickr-day.endRange:hover,
+.flatpickr-day.selected.prevMonthDay,
+.flatpickr-day.selected.nextMonthDay,
+.flatpickr-day:hover,
+.flatpickr-day:focus {
+  background-color: #429cbd;
+  border-color: #429cbd;
+  outline: none;
+}
+
+.dayContainer {
+  padding: 1rem 0.5rem;
+}
+
+.flatpickr-current-month {
+  font-size: 1rem;
+}
+
+.flatpickr-time,
+.flatpickr-time input:hover,
+.flatpickr-time .flatpickr-am-pm:hover,
+.flatpickr-time input:focus,
+.flatpickr-time .flatpickr-am-pm:focus {
+  background-color: #0e2833;
+}
+
+.flatpickr-time input.flatpickr-hour,
+.flatpickr-time input.flatpickr-minute,
+.flatpickr-time .flatpickr-am-pm {
+  font-weight: unset;
+  color: white;
+}
+
+.flatpickr-calendar.arrowBottom:before,
+.flatpickr-calendar.arrowBottom::after {
+  color: #429cbd80;
+}
+
+.flatpickr-time .flatpickr-time-separator,
+.flatpickr-time .flatpickr-am-pm {
+  color: white;
+}
+
+span.arrowDown,
+.numInputWrapper span.arrowUp {
+  background-color: #0e2833;
+  color: white;
+}
+.flatpickr-calendar.arrowTop:after {
+  border-bottom-color: #0e2833;
+}
+@media screen and (min-width: 600px) {
+  .flatpickr-calendar.arrowTop:after {
+    border-bottom-color: transparent;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .flatpickr-calendar {
+    width: 275px;
+  }
+}
