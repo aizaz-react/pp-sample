@@ -107,15 +107,15 @@ export const theme = createTheme({
       white: '#fff'
     },
     primary: {
-      main: '#E39E36', // dijon
+      main: '#ff6d00', // dijon
       contrastText: '#041218'
     },
     primaryLight: {
-      main: '#FABD2F',
+      main: '#ff9e00',
       contrastText: '#041218'
     },
     secondary: {
-      main: '#429CBD',
+      main: '#c77dff',
       contrastText: '#fff'
     },
     error: {
@@ -126,7 +126,7 @@ export const theme = createTheme({
     },
 
     secondaryLight: {
-      main: '#0E2833',
+      main: '#e0aaff',
       contrastText: '#fff'
     },
     text: {
@@ -137,9 +137,9 @@ export const theme = createTheme({
     },
     divider: '#BFBFBF',
     background: {
-      default: '#041218',
-      paper: '#275D71',
-      card: '#001C27',
+      default: '#10002b',
+      paper: '#5a189a',
+      card: '#5a189a',
       defaultLight: '#0412184D'
     },
     action: {

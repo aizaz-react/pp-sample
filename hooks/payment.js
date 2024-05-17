@@ -4,41 +4,38 @@ import { useStripe } from '@stripe/react-stripe-js';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 
+const delay = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject();
+    });
+  });
+};
+
 export const useGetCard = () => {
   return useQuery({
     queryKey: ['payment'],
-    queryFn: () => get(`/get-user-card-info`)
+    queryFn: () => delay()
   });
 };
 
 export const useGetStats = () => {
   return useQuery({
     queryKey: ['paymentStats'],
-    queryFn: () => get(`/get-products-stats`)
+    queryFn: () => delay()
   });
 };
 
-export const useGetTransactionHistory = ({ page, id }) => {
-  const index =
-    (parseInt(page) - 1) * (process.env.NEXT_PUBLIC_LIST_PER_PAGE || 15);
-  const offset = process.env.NEXT_PUBLIC_LIST_PER_PAGE || 15;
-  const user = getUserDetails();
-  const tenant_id = user.tenant_id;
-
+export const useGetTransactionHistory = () => {
   return useQuery({
-    queryFn: () =>
-      get(
-        `/transaction-history&index=${index}&offset=${offset}&tenant_id=${tenant_id}`
-      )
+    queryFn: () => delay()
   });
 };
 
 export const useAddPayment = (callback) => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (values) => {
-      return post(`/add-payment-method`, values);
-    },
+    mutationFn: () => delay(),
     onError: (err) => {
       toast.error(err?.response?.data?.message || err.message);
     },
@@ -49,20 +46,16 @@ export const useAddPayment = (callback) => {
     }
   });
 };
+
 export const usePaymentIntent = () => {
   return useQuery({
     queryKey: ['payment-intent'],
-    queryFn: () => get(`/payment-intent`)
+    queryFn: () => delay()
   });
 };
+
 export const useCreatePaymentMethod = () => {
-  const stripe = useStripe();
   return useMutation({
-    mutationFn: (cardNumber) => {
-      return stripe.createPaymentMethod({
-        type: 'card',
-        card: cardNumber
-      });
-    }
+    mutationFn: () => delay()
   });
 };

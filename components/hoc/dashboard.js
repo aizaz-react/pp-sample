@@ -1,18 +1,9 @@
 'use client';
-import DeveloperOption from '@/assets/CustomIcons/DeveloperOptionIcon';
-import KeywordMngmnt from '@/assets/CustomIcons/KeywordMngmntIcon';
-import LogsIcon from '@/assets/CustomIcons/LogsIcon';
-import MarketPlace from '@/assets/CustomIcons/MarketPlace';
 import OverviewIcon from '@/assets/CustomIcons/OverviewIcon';
 import PaymentMethodIcon from '@/assets/CustomIcons/PaymentMethodIcon';
-import PromptStudioIcon from '@/assets/CustomIcons/PromptStudioIcon';
 import UserMngmnt from '@/assets/CustomIcons/UserMngmnt';
-import VectorVault from '@/assets/CustomIcons/VectorVault';
-import ModeOutlinedIcon from '@mui/icons-material/ModeOutlined';
 import {
-  Avatar,
   Box,
-  IconButton,
   Stack,
   Toolbar,
   Typography,
@@ -29,7 +20,7 @@ import CompanyModal from '../core/modals/CompanyModal';
 
 const drawerList = [
   {
-    title: 'Overview',
+    title: 'Dashboard',
     Icon: () => <OverviewIcon />,
     link: '/dashboard/overview'
   },
@@ -57,64 +48,6 @@ const Dashboard = ({ children }) => {
   const pathname = usePathname();
   const handleClose = useCallback(() => setOpenCompany(false), []);
 
-  const drawer = (
-    <Stack mt={5} gap={'1.5rem'} alignItems={'center'}>
-      <Toolbar />
-      <Box sx={{ position: 'relative' }}>
-        <Avatar
-          sx={{
-            width: '90px',
-            height: '90px',
-            border: `4px solid ${theme.palette.background.paper}`
-          }}
-          src={''}
-        >
-          {'P'}
-        </Avatar>
-        <IconButton
-          color='secondary'
-          onClick={() => setOpenCompany(true)}
-          sx={{
-            position: 'absolute',
-            bottom: '-0.6rem',
-            right: '-0.6rem',
-            background: theme.palette.secondaryLight.main
-          }}
-        >
-          <ModeOutlinedIcon fontSize='small' />
-        </IconButton>
-      </Box>
-      <Stack textAlign={'center'}>
-        <Typography
-          component={'h1'}
-          variant='subHeading2'
-          color={'secondary.main'}
-        >
-          {'Test Company'}
-        </Typography>
-        <Typography component={'p'} variant='body2' color={'text.secondary'}>
-          {'test@company.com'}
-        </Typography>
-      </Stack>
-      <Stack gap={'.5rem'} width={'100%'}>
-        {drawerList.map(({ title, Icon, link }, index) => (
-          <DrawerListItem
-            selected={pathname.includes(link)}
-            onClick={() => toggleDrawer()}
-            key={index}
-          >
-            <Link href={link} className='text-decoration-none'>
-              <Icon />
-              <Typography component={'p'} variant='body2' color={'inherit'}>
-                {title}
-              </Typography>
-            </Link>
-          </DrawerListItem>
-        ))}
-      </Stack>
-
-    </Stack>
-  );
 
   return (
     <>
@@ -126,7 +59,28 @@ const Dashboard = ({ children }) => {
           mobileOpen={mobileOpen}
           setMobileOpen={toggleDrawer}
         >
-          {drawer}
+          <Stack mt={7} gap={'1.5rem'} alignItems={'center'}>
+            <Stack gap={'.5rem'} width={'100%'}>
+              {drawerList.map(({ title, Icon, link }, index) => (
+                <DrawerListItem
+                  selected={pathname.includes(link)}
+                  onClick={() => toggleDrawer()}
+                  key={index}
+                >
+                  <Link href={link} className='text-decoration-none'>
+                    <Icon />
+                    <Typography
+                      component={'p'}
+                      variant='body2'
+                      color={'inherit'}
+                    >
+                      {title}
+                    </Typography>
+                  </Link>
+                </DrawerListItem>
+              ))}
+            </Stack>
+          </Stack>
         </ResponsiveDrawer>
         {children}
         <CompanyModal open={openCompany} handleClose={handleClose} />
@@ -154,4 +108,3 @@ const DrawerListItem = styled(Box)(({ selected, theme }) => ({
     }
   }
 }));
-

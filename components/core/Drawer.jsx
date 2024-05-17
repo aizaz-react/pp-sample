@@ -53,7 +53,7 @@ const Drawer = styled(MuiDrawer)(({ theme, selected }) => ({
     borderRight: 'none',
     background: !!selected
       ? 'transparent'
-      : 'linear-gradient(180deg, #041218 11%, rgba(8, 30, 38, 1) 70.41%, rgba(39, 93, 113, 0.25) 1800%)',
+      : 'linear-gradient(180deg, #10002b 33%, #5a189a 70.41%, #10002b 1800%)',
     padding: '1.5rem 10px 1.5rem 15px',
     display: 'flex',
     flexDirection: 'column',

@@ -3,8 +3,6 @@ import MenuIcon from '@/assets/CustomIcons/MenuIcon';
 import PLogo from '@/assets/CustomIcons/PLogo';
 import SettingLogo from '@/assets/CustomIcons/SettingLogo';
 import UserImageLogo from '@/assets/CustomIcons/UserImageLogo';
-import { useGetCompany } from '@/hooks/company';
-import { useGetProfile } from '@/hooks/profile';
 import { pxToRem } from '@/utils/theme';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -23,21 +21,14 @@ import {
   useMediaQuery,
   useTheme
 } from '@mui/material';
-import { useQueryClient } from '@tanstack/react-query';
-import Cookies from 'js-cookie';
-import { signOut } from 'next-auth/react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import FullNameLogo from '../../assets/CustomIcons/FullNameLogo';
 import LogoutModal from './modals/LogoutModal';
 import ProfileModal from './modals/ProfileModal';
 
-const Navbar = ({ mobileOpen, setMobileOpen, ...props }) => {
+const Navbar = ({ mobileOpen, setMobileOpen }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('md'));
-  const router = useRouter();
-  const queryClient = useQueryClient();
   const [anchorEl, setAnchorEl] = useState(null);
   const [openProfileModal, setOpenProfileModal] = useState(false);
   const [openLogoutModal, setOpenLogoutModal] = useState(false);
@@ -52,14 +43,7 @@ const Navbar = ({ mobileOpen, setMobileOpen, ...props }) => {
   const handleOpenMenu = (event) => setAnchorEl(event.currentTarget);
   const handleCloseMenu = () => setAnchorEl(null);
 
-  const logout = () => {
-    signOut({ redirect: false });
-    sessionStorage.clear();
-    Cookies.remove('authToken');
-    router.push('/auth/login');
-    queryClient.invalidateQueries();
-    queryClient.clear();
-  };
+  const logout = () => {};
 
   return (
     <Main>
@@ -70,19 +54,16 @@ const Navbar = ({ mobileOpen, setMobileOpen, ...props }) => {
         >
           <MenuIcon />
         </IconButton>
-        <Box sx={{ px: pxToRem(4) }}>
-          <PLogo width={pxToRem(27)} height={pxToRem(27)} />
-        </Box>
       </MenuIconWrapper>
       <LogoWrapper justifyContent={'center'}>
-        <FullNameLogo width={'171'} height={'22'} />
+        <Typography variant='heading3' color='primary.main'>Company</Typography>
       </LogoWrapper>
       <ProfileSection>
         <ProfileDetails onClick={(e) => handleOpenMenu(e)}>
           <StyledAvatar src={''}>{'A'}</StyledAvatar>
           <ProfileInfo>
             <Typography variant='body1' color='secondary.main'>
-              {'Test user'}
+              {'Admin'}
             </Typography>
           </ProfileInfo>
           <StyledIconButton>
@@ -114,7 +95,7 @@ const Navbar = ({ mobileOpen, setMobileOpen, ...props }) => {
               overflow: 'hidden',
               filter: 'unset',
               boxShadow: '2px 2px 25px 0px rgba(255, 255, 255, 0.10)',
-              bgcolor: 'secondaryLight.main',
+              bgcolor: 'background.paper',
               borderRadius: pxToRem(12),
               width: pxToRem(220),
               maxWidth: '100%'
@@ -206,7 +187,7 @@ const Navbar = ({ mobileOpen, setMobileOpen, ...props }) => {
 export default Navbar;
 
 const Main = styled(Box)(({ theme }) => ({
-  background: 'linear-gradient(8deg, #275D71 -161.13%, #041218 80.21%)',
+  background: 'linear-gradient(8deg, #5a189a -161.13%, #10002b 80.21%)',
   boxShadow: ' 0px 2px 12px 0px rgba(11, 22, 44, 0.05)',
   padding: pxToRem(13),
   display: 'flex',

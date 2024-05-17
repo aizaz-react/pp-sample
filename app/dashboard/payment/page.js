@@ -14,8 +14,7 @@ import {
   Stack,
   styled,
   Typography,
-  useMediaQuery,
-  useTheme
+  useMediaQuery
 } from '@mui/material';
 import moment from 'moment';
 import { useCallback, useState } from 'react';
@@ -28,10 +27,8 @@ import {
 } from '@/hooks/payment';
 
 export default function Home() {
-  const theme = useTheme();
   const [page, setPage] = useState(1);
   const [open, setOpen] = useState(false);
-  const isSmallScreen = useMediaQuery('(max-width:400px)');
   const handleClose = useCallback(() => {
     setOpen(false);
   }, []);
@@ -104,35 +101,12 @@ export default function Home() {
               Payment Management
             </Typography>
           </LeftToolbar>
-          {card?.payment_method ? (
-            <Typography
-              variant='body2'
-              sx={{
-                display: 'flex',
-                marginRight: '1rem',
-                gap: '1rem',
-                alignItems: 'center'
-              }}
-            >
-              Pending Billables:
-              {transactions?.pending_payment ||
-              transactions?.pending_payment === 0 ? (
-                <Typography variant='subHeading1' color={'error'}>
-                  {`$${parseFloat(transactions.pending_payment.toFixed(1))}`}
-                </Typography>
-              ) : (
-                ''
-              )}
+
+          <Button variant={'contained'} sx={{ px: pxToRem(32) }}>
+            <Typography variant='body1' onClick={() => setOpen(true)}>
+              Add Payment
             </Typography>
-          ) : (
-            !loading && (
-              <Button variant={'contained'} sx={{ px: pxToRem(32) }}>
-                <Typography variant='body1' onClick={() => setOpen(true)}>
-                  Add Payment
-                </Typography>
-              </Button>
-            )
-          )}
+          </Button>
         </Toolbar>
         {statsLoading || loading ? (
           <PaymentWrapper sx={{ justifyContent: 'center' }}>
@@ -150,7 +124,6 @@ export default function Home() {
               <PaymentCard data={card} setOpen={handleOpen} />
               <DonutChart stats={stats} />
             </PaymentGrid>
-
             <DataTable
               columns={columns}
               rows={!!transactions?.result ? transactions?.result : []}
@@ -209,7 +182,6 @@ export default function Home() {
             sx={{ justifyContent: 'center', alignItems: 'center' }}
           >
             <NoCard />
-            <Typography variant='body1'>No payment found</Typography>
           </PaymentWrapper>
         )}
       </Stack>

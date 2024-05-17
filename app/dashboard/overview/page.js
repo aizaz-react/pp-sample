@@ -73,7 +73,7 @@ const OverView = () => {
         show: false
       }
     },
-    colors: ['#E39E36', '#429CBD', '#D9D9D9', '#275D71', '#FABD2F', '#041218'],
+    colors: ['#ff6d00', '#c77dff', '#D9D9D9', '#275D71', '#FABD2F', '#041218'],
     grid: {
       show: false
     },
@@ -97,13 +97,11 @@ const OverView = () => {
 
   const {
     series,
-    cards
+    cards = []
   } = useMemo(() => {
-    const active = Math.floor(Math.random() * 10000);
-    const paid = Math.floor(Math.random() * 10000);
     const seriesData = [];
     for (let i = 1; i <= 2; i++) {
-      const seriesName = `${i === 0 ? 'Active' : ''} Active`;
+      const seriesName = `${i === 1 ? 'Active' : 'Paid'} Users`;
       const series = [];
       const startDate = new Date();
       for (let j = 0; j < 12; j++) {
@@ -118,7 +116,7 @@ const OverView = () => {
 
     return {
       series: seriesData,
-      cards: [active, paid]
+      cards: [65570, 36990]
     };
   }, []);
 
@@ -133,7 +131,7 @@ const OverView = () => {
       <CardWrapper
         sx={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}
       >
-        {cards.map((_, i) => (
+        {cards?.map((_, i) => (
           <UtilityCard
             key={i}
             cardValue={_}
@@ -146,7 +144,7 @@ const OverView = () => {
       <ChartSection gap={'2rem'}>
         <ChartToolbar>
           <Typography variant='heading2' whiteSpace='nowrap'>
-            Utilization
+            Insights
           </Typography>
           <ActionBox>
             <Stack direction={'row'} alignItems={'center'}>

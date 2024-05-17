@@ -11,7 +11,7 @@ export const PaginationSection = styled(Box)({
     border: '1px solid #9B9B9B',
     '&.Mui-selected': {
       background:
-        'linear-gradient(0deg, rgba(15,56,64,1) 43%, rgba(15,15,19,1) 133%)'
+        'linear-gradient(0deg, #5a189a 43%, #10002b 133%)'
     }
   }
 });
